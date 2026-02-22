@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node / Frontend
+node_modules/
+.pnpm-store/
+.turbo/
+.cache/
+.eslintcache
+*.tsbuildinfo
+dist/
+coverage/
+out/
+
+# Next.js
+.next/
+
+# JVM / Gradle / Kotlin
+.gradle/
+.kotlin/
+build/
+target/
+
+# IDE / Editors
+.idea/
+*.iml
+.vscode/

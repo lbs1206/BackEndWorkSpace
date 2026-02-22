@@ -1,0 +1,122 @@
+﻿:root {
+  --mint-50: #f7fffa;
+  --mint-100: #eefaf3;
+  --mint-200: #dff2e7;
+  --mint-300: #cbead9;
+  --mint-400: #a8d8bf;
+  --mint-500: #75be9a;
+  --text-main: #1f4a33;
+  --text-soft: #3f6d55;
+  --panel-grad: linear-gradient(155deg, #ffffff 0%, #f6fff9 58%, #eef9f3 100%);
+  --accent-grad: linear-gradient(135deg, #dcf3e7 0%, #bfe8d0 100%);
+}
+
+/* pastel green + white theme */
+html,
+body {
+  color: var(--text-main);
+  background: radial-gradient(circle at top, #f2fff7 0%, #f9fffc 48%, #ffffff 100%);
+}
+
+.home-panel,
+.tool-header,
+.erd-status,
+.erd-sidebar,
+.erd-toolbar,
+.api-doc-status,
+.api-doc-sidebar,
+.api-doc-editor,
+.api-doc-preview,
+.api-doc-empty,
+.tool-frame {
+  background: var(--panel-grad);
+  border-color: var(--mint-300);
+  color: var(--text-main);
+}
+
+.menu-card,
+.erd-project-item,
+.api-doc-project-item,
+.erd-sidebar-actions button,
+.api-doc-sidebar-actions button,
+.api-doc-api-list-head button,
+.api-doc-editor input,
+.api-doc-editor select,
+.api-doc-editor textarea,
+.erd-title-input,
+.erd-folder-select,
+.api-doc-table-wrap,
+.api-doc-accordion,
+.api-doc-selected-api {
+  background: linear-gradient(145deg, #ffffff 0%, var(--mint-50) 65%, var(--mint-100) 100%);
+  border-color: var(--mint-300);
+  color: var(--text-main);
+}
+
+.api-doc-accordion-toggle,
+.erd-sidebar-actions button,
+.api-doc-sidebar-actions button,
+.api-doc-api-list-head button {
+  background: var(--accent-grad);
+  border-color: var(--mint-400);
+  color: var(--text-main);
+}
+
+.menu-card:hover,
+.erd-project-item.active,
+.api-doc-project-item.active {
+  border-color: var(--mint-500);
+  background: var(--accent-grad);
+}
+
+.tool-link,
+.home-panel p,
+.menu-card p,
+.api-doc-group-title,
+.erd-group-title,
+.spotlight-status,
+.spotlight-purpose,
+.api-doc-editor label,
+.api-doc-kv-check,
+.spotlight-section h3,
+.api-doc-accordion-meta {
+  color: var(--text-soft);
+}
+
+.api-doc-danger,
+.erd-danger {
+  background: #ffecec;
+  border-color: #edc8c8;
+  color: #a13a3a;
+}
+
+.spotlight-section {
+  border-top-color: var(--mint-200);
+}
+
+.spotlight-section p,
+.spotlight-section pre {
+  color: var(--text-main);
+}
+
+.method-get {
+  background: #e3f8eb;
+  color: #2b7451;
+}
+
+.method-post {
+  background: #e8f7ef;
+  color: #2e6e52;
+}
+
+.method-put,
+.method-patch {
+  background: #edf9ef;
+  color: #356f47;
+}
+
+.method-delete {
+  background: #f9ecec;
+  color: #8a2f2f;
+}
+

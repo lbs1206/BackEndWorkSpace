@@ -1,0 +1,253 @@
+{
+  "version": 2,
+  "folders": [],
+  "pages": [
+    {
+      "id": "596bfc2f-b27b-4ba1-af23-e5ac2cf6cf32",
+      "title": "Untitled API Page",
+      "folderId": null,
+      "baseUrl": "https://api.example.com",
+      "status": "review",
+      "description": "",
+      "endpoints": [
+        {
+          "id": "fb1f0121-b5a2-4dc2-b25d-9af36dddc019",
+          "name": "Untitled API",
+          "method": "GET",
+          "urlPath": "/resource",
+          "auth": "bearer",
+          "headers": [
+            {
+              "id": "dcc968ab-52e8-4c4b-9a62-743f7dcf9c11",
+              "key": "Content-Type",
+              "value": "application/json",
+              "enabled": true
+            }
+          ],
+          "params": [
+            {
+              "id": "b7399472-f1c5-4c3d-ae4e-e711640c792a",
+              "key": "TEST",
+              "value": "string",
+              "enabled": true
+            },
+            {
+              "id": "759ca357-8491-40eb-aec4-ecca0443c49d",
+              "key": "",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "id": "6a50ac19-9249-4984-8a55-5c25af9ba024",
+              "key": "",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "id": "03053b20-bbef-4c9a-8920-c5fef64c2741",
+              "key": "",
+              "value": "",
+              "enabled": true
+            }
+          ],
+          "bodyJson": "{\n  \n}",
+          "responses": [
+            {
+              "id": "af4b337b-af1b-4c0f-b0e1-69f71873bfa7",
+              "statusCode": 200,
+              "title": "200",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            },
+            {
+              "id": "27fa8297-3920-4bde-ba45-da80b489532c",
+              "statusCode": 400,
+              "title": "400",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            }
+          ],
+          "notes": ""
+        },
+        {
+          "id": "862a1827-77fd-4eca-8830-f482b6e2ce1d",
+          "name": "Get User",
+          "method": "POST",
+          "urlPath": "/resource",
+          "auth": "bearer",
+          "headers": [
+            {
+              "id": "cadf1635-8dcc-498a-96f9-798b8140e86d",
+              "key": "Content-Type",
+              "value": "application/json",
+              "enabled": true
+            }
+          ],
+          "params": [
+            {
+              "id": "ea381377-0cc4-403f-925b-6a6c63c68302",
+              "key": "",
+              "value": "",
+              "enabled": true
+            }
+          ],
+          "bodyJson": "{\n  \n}",
+          "responses": [
+            {
+              "id": "0c1ff979-1d7b-4648-9965-16def7d95682",
+              "statusCode": 200,
+              "title": "200",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            },
+            {
+              "id": "925e5321-1bc8-453e-8afc-f9ce2bf34e6a",
+              "statusCode": 400,
+              "title": "400",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            }
+          ],
+          "notes": ""
+        },
+        {
+          "id": "a412795a-bb58-41be-8daf-b19569d38ad5",
+          "name": "New API",
+          "method": "GET",
+          "urlPath": "/resource",
+          "auth": "bearer",
+          "headers": [
+            {
+              "id": "add4f01f-5c3c-45d0-bea7-b55ad53726e6",
+              "key": "Content-Type",
+              "value": "application/json",
+              "enabled": true
+            }
+          ],
+          "params": [
+            {
+              "id": "7e20e4d3-2ea8-4c58-835f-6fa1a779f38a",
+              "key": "",
+              "value": "",
+              "enabled": true
+            }
+          ],
+          "bodyJson": "{\n  \n}",
+          "responses": [
+            {
+              "id": "92d3f144-26b5-4f96-b74f-3e6e87ae92cf",
+              "statusCode": 200,
+              "title": "200",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            },
+            {
+              "id": "5070e93d-b612-4c23-ab23-13fcad841912",
+              "statusCode": 400,
+              "title": "400",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            }
+          ],
+          "notes": ""
+        }
+      ],
+      "createdAt": "2026-02-18T06:05:28.522Z",
+      "updatedAt": "2026-02-21T11:07:00.017Z"
+    },
+    {
+      "id": "f78466fb-43c0-42ac-981e-ec308a5cde0e",
+      "title": "User API",
+      "folderId": null,
+      "baseUrl": "https://api.example.com",
+      "status": "draft",
+      "description": "",
+      "endpoints": [
+        {
+          "id": "d141e54f-6ee6-4ce1-9745-7c1a27533f69",
+          "name": "Untitled API",
+          "method": "GET",
+          "urlPath": "/resource",
+          "auth": "bearer",
+          "headers": [
+            {
+              "id": "7762ff4d-1a23-4a7d-a9b5-c90f8851f99b",
+              "key": "Content-Type",
+              "value": "application/json",
+              "enabled": true
+            }
+          ],
+          "params": [
+            {
+              "id": "8064216f-8512-4456-9f10-b86b5bb324f8",
+              "key": "",
+              "value": "",
+              "enabled": true
+            }
+          ],
+          "bodyJson": "{\n  \n}",
+          "responses": [
+            {
+              "id": "af3cfae6-a52c-41ce-afce-9a77a3f9c39e",
+              "statusCode": 200,
+              "title": "200",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            },
+            {
+              "id": "f753f10b-21c2-4d2b-9061-7a1ede577ff3",
+              "statusCode": 400,
+              "title": "400",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            }
+          ],
+          "notes": ""
+        },
+        {
+          "id": "415a5746-6dea-44dd-b26e-dc309ca728d1",
+          "name": "TEST",
+          "method": "GET",
+          "urlPath": "/resource/test",
+          "auth": "bearer",
+          "headers": [
+            {
+              "id": "ba32aeac-bb51-4111-9243-74d2e065d392",
+              "key": "Content-Type",
+              "value": "application/json",
+              "enabled": true
+            }
+          ],
+          "params": [
+            {
+              "id": "84a1eedf-1aeb-4673-af69-acde8a62c4cc",
+              "key": "",
+              "value": "",
+              "enabled": true
+            }
+          ],
+          "bodyJson": "{\n  \n}",
+          "responses": [
+            {
+              "id": "7b48fa3b-d538-428e-be3e-7018c12c4d81",
+              "statusCode": 200,
+              "title": "200",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            },
+            {
+              "id": "0218df5b-4485-402e-8918-144913251dfc",
+              "statusCode": 400,
+              "title": "400",
+              "description": "",
+              "bodyJson": "{\n  \n}"
+            }
+          ],
+          "notes": ""
+        }
+      ],
+      "createdAt": "2026-02-18T06:05:31.325Z",
+      "updatedAt": "2026-02-18T06:08:22.009Z"
+    }
+  ]
+}
