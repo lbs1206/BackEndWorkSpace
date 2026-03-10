@@ -1,0 +1,30 @@
+# Dependencies / package stores
+**/node_modules/
+**/.pnpm-store/
+
+# Frontend build artifacts
+**/.next/
+**/out/
+**/dist/
+**/coverage/
+
+# JVM / Gradle / Kotlin build artifacts
+**/.gradle/
+**/.kotlin/
+**/build/
+**/target/
+
+# Tooling caches
+**/.turbo/
+**/.cache/
+**/.eslintcache
+**/*.tsbuildinfo
+
+# Logs / temp
+**/*.log
+**/tmp/
+**/temp/
+
+# IDE / editor metadata
+.idea/
+*.iml

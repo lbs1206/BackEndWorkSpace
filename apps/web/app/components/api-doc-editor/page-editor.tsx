@@ -19,6 +19,7 @@ type ApiDocEditorPageProps = {
   onPatchEndpoint: (endpointId: string, patch: Partial<ApiDocEndpoint>) => Promise<void>;
   onPatchEndpointRows: (endpointId: string, kind: RowKind, rows: ApiDocKeyValue[]) => Promise<void>;
   onPatchEndpointResponses: (endpointId: string, responses: ApiDocResponse[]) => Promise<void>;
+  onDeleteEndpoint: (endpointId: string) => Promise<void>;
 };
 
 export function ApiDocEditorPage({
@@ -32,6 +33,7 @@ export function ApiDocEditorPage({
   onPatchEndpoint,
   onPatchEndpointRows,
   onPatchEndpointResponses,
+  onDeleteEndpoint,
 }: ApiDocEditorPageProps) {
   return (
     <section className="api-doc-editor">
@@ -90,6 +92,9 @@ export function ApiDocEditorPage({
                 </button>
                 <button type="button" className="api-doc-mini" onClick={() => onToggleEndpointOpen(endpoint.id)}>
                   {isOpen ? "접기" : "열기"}
+                </button>
+                <button type="button" className="api-doc-danger" onClick={() => void onDeleteEndpoint(endpoint.id)}>
+                  삭제
                 </button>
               </div>
 

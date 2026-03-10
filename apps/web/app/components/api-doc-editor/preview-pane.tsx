@@ -3,92 +3,96 @@
 type ApiDocEditorPreviewProps = {
   selectedPage: ApiDocPage | null;
   previewEndpoint: ApiDocEndpoint | null;
-  onSelectEndpointForPreview: (endpointId: string) => void;
 };
 
-export function ApiDocEditorPreview({ selectedPage, previewEndpoint, onSelectEndpointForPreview }: ApiDocEditorPreviewProps) {
+function resolveHost(baseUrl: string): string {
+  try {
+    return new URL(baseUrl).host;
+  } catch {
+    return baseUrl.replace(/^https?:\/\//, "");
+  }
+}
+
+function makeRequestSample(page: ApiDocPage, endpoint: ApiDocEndpoint): string {
+  const host = resolveHost(page.baseUrl);
+  const headerLines = endpoint.headers
+    .filter((row) => row.enabled && row.key.trim().length > 0)
+    .map((row) => `${row.key}: ${row.value}`);
+  const authLine =
+    endpoint.auth === "bearer"
+      ? "Authorization: Bearer {token}"
+      : endpoint.auth === "apiKey"
+        ? "X-API-KEY: {api_key}"
+        : endpoint.auth === "basic"
+          ? "Authorization: Basic {base64(id:pw)}"
+          : "";
+
+  return [
+    `${endpoint.method} ${endpoint.urlPath} HTTP/1.1`,
+    `Host: ${host || "-"}`,
+    ...headerLines,
+    ...(authLine ? [authLine] : []),
+    "",
+    endpoint.bodyJson || "{}",
+  ]
+    .filter((line, index, arr) => !(line === "" && index === arr.length - 1))
+    .join("\n");
+}
+
+export function ApiDocEditorPreview({ selectedPage, previewEndpoint }: ApiDocEditorPreviewProps) {
   return (
     <aside className="api-doc-preview-pane">
       {selectedPage ? (
-        <section className="api-doc-preview">
+        <section className="api-doc-preview api-doc-reference-preview">
           {previewEndpoint ? (
             <>
-              <div className="spotlight-head">
-                <span className={`spotlight-method method-${previewEndpoint.method.toLowerCase()}`}>
-                  {previewEndpoint.method}
-                </span>
-                <code>{selectedPage.baseUrl}{previewEndpoint.urlPath}</code>
-                <span className="spotlight-status">{selectedPage.status}</span>
+              <div className="api-doc-ref-head">
+                <div className="api-doc-ref-title-row">
+                  <h2>{previewEndpoint.name}</h2>
+                  <span className="spotlight-status">{selectedPage.status}</span>
+                </div>
+                <div className="api-doc-ref-url-row">
+                  <span className={`spotlight-method method-${previewEndpoint.method.toLowerCase()}`}>
+                    {previewEndpoint.method}
+                  </span>
+                  <code>{selectedPage.baseUrl}{previewEndpoint.urlPath}</code>
+                </div>
+                <p className="spotlight-purpose">{selectedPage.description || "-"}</p>
               </div>
 
-              <h2>{previewEndpoint.name}</h2>
-              <p className="spotlight-purpose">{selectedPage.description || "-"}</p>
+              <section className="api-doc-ref-block">
+                <header className="api-doc-ref-block-head">
+                  <span>Example Request</span>
+                  <span>New Request</span>
+                </header>
+                <div className="api-doc-ref-tabs">
+                  <span className="active">Body</span>
+                </div>
+                <pre>{makeRequestSample(selectedPage, previewEndpoint)}</pre>
+              </section>
+
+              {previewEndpoint.responses.map((response) => (
+                <section key={response.id} className="api-doc-ref-block">
+                  <header className="api-doc-ref-block-head">
+                    <span>Example Response</span>
+                    <span>{response.statusCode} {response.title}</span>
+                  </header>
+                  <div className="api-doc-ref-tabs">
+                    <span className="active">Body</span>
+                  </div>
+                  <pre>{response.bodyJson || "{}"}</pre>
+                </section>
+              ))}
+
+              {!!previewEndpoint.notes && (
+                <section className="api-doc-ref-note">
+                  <h3>Notes</h3>
+                  <pre>{previewEndpoint.notes}</pre>
+                </section>
+              )}
             </>
           ) : (
             <p className="spotlight-purpose">이 페이지에 API Interface가 없습니다. + API로 추가해 주세요.</p>
-          )}
-
-          <div className="api-doc-api-list-head">
-            <h3>API Interfaces</h3>
-          </div>
-          <div className="api-doc-api-list">
-            {selectedPage.endpoints.map((api) => (
-              <button
-                key={api.id}
-                type="button"
-                className={`api-doc-project-item ${api.id === previewEndpoint?.id ? "active" : ""}`}
-                onClick={() => onSelectEndpointForPreview(api.id)}
-              >
-                {api.method} {api.name}
-              </button>
-            ))}
-          </div>
-          {previewEndpoint && (
-            <>
-              <div className="spotlight-section">
-                <h3>Auth</h3>
-                <p>{previewEndpoint.auth}</p>
-              </div>
-
-              <div className="spotlight-section">
-                <h3>Headers</h3>
-                <pre>
-                  {previewEndpoint.headers
-                    .filter((row) => row.enabled)
-                    .map((row) => `${row.key}: ${row.value}`)
-                    .join("\n") || "-"}
-                </pre>
-              </div>
-
-              <div className="spotlight-section">
-                <h3>Params</h3>
-                <pre>
-                  {previewEndpoint.params
-                    .filter((row) => row.enabled)
-                    .map((row) => `${row.key}=${row.value}`)
-                    .join("\n") || "-"}
-                </pre>
-              </div>
-
-              <div className="spotlight-section">
-                <h3>Body JSON</h3>
-                <pre>{previewEndpoint.bodyJson || "-"}</pre>
-              </div>
-
-              <div className="spotlight-section">
-                <h3>Responses</h3>
-                <pre>
-                  {previewEndpoint.responses
-                    .map((response) => `[${response.statusCode}] ${response.title}\n${response.bodyJson}`)
-                    .join("\n\n") || "-"}
-                </pre>
-              </div>
-
-              <div className="spotlight-section">
-                <h3>Notes</h3>
-                <pre>{previewEndpoint.notes || "-"}</pre>
-              </div>
-            </>
           )}
         </section>
       ) : (

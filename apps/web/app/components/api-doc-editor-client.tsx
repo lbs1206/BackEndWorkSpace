@@ -83,20 +83,10 @@ export function ApiDocEditorClient() {
     }
 
     const safeOpenIds = openEndpointIds.filter((id) => endpointIds.includes(id));
-    if (safeOpenIds.length === 0) {
-      dispatch(setOpenEndpointIds([endpointIds[0]]));
-      return;
-    }
     if (safeOpenIds.length !== openEndpointIds.length) {
       dispatch(setOpenEndpointIds(safeOpenIds));
     }
   }, [dispatch, openEndpointIds, previewEndpointId, selectedPage]);
-
-  useEffect(() => {
-    if (!previewEndpointId) return;
-    if (openEndpointIds.includes(previewEndpointId)) return;
-    dispatch(setOpenEndpointIds([...openEndpointIds, previewEndpointId]));
-  }, [dispatch, openEndpointIds, previewEndpointId]);
 
   const applyWorkspace = (updater: (prev: WorkspacePayload) => WorkspacePayload) => {
     dispatch(setWorkspace(updater(workspaceRef.current)));
@@ -212,6 +202,38 @@ export function ApiDocEditorClient() {
     await patchEndpoint(endpointId, { responses });
   };
 
+  const deleteEndpoint = async (endpointId: string) => {
+    if (!selectedPage) return;
+    const ok = window.confirm("이 API Interface를 삭제하시겠습니까?");
+    if (!ok) return;
+
+    const response = await fetch(API_DOC_WORKSPACE_API, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ type: "endpoint", pageId: selectedPage.id, id: endpointId }),
+    });
+    if (!response.ok) {
+      dispatch(setStatus("API delete failed."));
+      return;
+    }
+
+    const reload = await fetch(API_DOC_WORKSPACE_API, { cache: "no-store" });
+    if (!reload.ok) {
+      dispatch(setStatus("API deleted, but failed to refresh workspace."));
+      return;
+    }
+    const payload = (await reload.json()) as Partial<WorkspacePayload>;
+    const pages = Array.isArray(payload.pages) ? payload.pages : [];
+    const folders = Array.isArray(payload.folders) ? payload.folders : [];
+    const currentPage = pages.find((page) => page.id === selectedPage.id) ?? pages[0] ?? null;
+    const nextPreviewEndpointId = currentPage?.endpoints[0]?.id ?? null;
+    dispatch(setWorkspace({ pages, folders }));
+    dispatch(setSelectedPageId(currentPage?.id ?? null));
+    dispatch(setPreviewEndpointId(nextPreviewEndpointId));
+    dispatch(setOpenEndpointIds(nextPreviewEndpointId ? [nextPreviewEndpointId] : []));
+    dispatch(setStatus("API deleted."));
+  };
+
   const toggleFolder = (folderId: string) => {
     setCollapsedFolderIds((prev) => (prev.includes(folderId) ? prev.filter((id) => id !== folderId) : [...prev, folderId]));
   };
@@ -260,6 +282,7 @@ export function ApiDocEditorClient() {
               onPatchEndpoint={patchEndpoint}
               onPatchEndpointRows={patchEndpointRows}
               onPatchEndpointResponses={patchEndpointResponses}
+              onDeleteEndpoint={deleteEndpoint}
             />
           ) : (
             <section className="api-doc-empty">Create a page and API to start editing.</section>
@@ -268,7 +291,6 @@ export function ApiDocEditorClient() {
           <ApiDocEditorPreview
             selectedPage={selectedPage}
             previewEndpoint={previewEndpoint}
-            onSelectEndpointForPreview={selectEndpointForPreview}
           />
         </div>
       </div>

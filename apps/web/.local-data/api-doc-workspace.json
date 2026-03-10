@@ -4,7 +4,7 @@
   "pages": [
     {
       "id": "596bfc2f-b27b-4ba1-af23-e5ac2cf6cf32",
-      "title": "Untitled API Page",
+      "title": "API Page",
       "folderId": null,
       "baseUrl": "https://api.example.com",
       "status": "review",
@@ -18,33 +18,15 @@
           "auth": "bearer",
           "headers": [
             {
-              "id": "dcc968ab-52e8-4c4b-9a62-743f7dcf9c11",
-              "key": "Content-Type",
-              "value": "application/json",
+              "id": "e5698c56-f3ea-4986-95c3-9f17946fca21",
+              "key": "",
+              "value": "",
               "enabled": true
             }
           ],
           "params": [
             {
-              "id": "b7399472-f1c5-4c3d-ae4e-e711640c792a",
-              "key": "TEST",
-              "value": "string",
-              "enabled": true
-            },
-            {
-              "id": "759ca357-8491-40eb-aec4-ecca0443c49d",
-              "key": "",
-              "value": "",
-              "enabled": true
-            },
-            {
-              "id": "6a50ac19-9249-4984-8a55-5c25af9ba024",
-              "key": "",
-              "value": "",
-              "enabled": true
-            },
-            {
-              "id": "03053b20-bbef-4c9a-8920-c5fef64c2741",
+              "id": "6a107d79-ef88-41e2-8380-9cb26a69e636",
               "key": "",
               "value": "",
               "enabled": true
@@ -53,14 +35,14 @@
           "bodyJson": "{\n  \n}",
           "responses": [
             {
-              "id": "af4b337b-af1b-4c0f-b0e1-69f71873bfa7",
+              "id": "3fd7c487-3a4f-4513-8dba-58e5869e8fa7",
               "statusCode": 200,
               "title": "200",
               "description": "",
               "bodyJson": "{\n  \n}"
             },
             {
-              "id": "27fa8297-3920-4bde-ba45-da80b489532c",
+              "id": "6df722ff-3e43-4b02-85e7-808e8356d8cc",
               "statusCode": 400,
               "title": "400",
               "description": "",
@@ -153,7 +135,7 @@
         }
       ],
       "createdAt": "2026-02-18T06:05:28.522Z",
-      "updatedAt": "2026-02-21T11:07:00.017Z"
+      "updatedAt": "2026-02-22T07:27:19.374Z"
     },
     {
       "id": "f78466fb-43c0-42ac-981e-ec308a5cde0e",
